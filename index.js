@@ -45,7 +45,7 @@ function getLogger({simple, metadata}) {
 			sql: sqlFormat.level
 		},
 		format: getFormatter({simple}),
-		defaultMeta: metadata,
+		defaultMeta: simple ? {} : metadata,
 		transports: [new winston.transports.Console()]
 	});
 
