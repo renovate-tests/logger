@@ -11,33 +11,24 @@ winston.addColors({sql: sqlFormat.color});
 
 const colorizer = format.colorize();
 const sqlFormatter = format((info, opts) => {
-
 	const level = info[LEVEL];
 
 	if (opts.colorize && level === 'sql') {
-
-		info.message = colorizer.colorize(level, `${info.level}: ${info.message}\n`);
-
+		info.message = colorizer.colorize(level, `${info.message}\n`);
 	}
 
 	return info;
-
 });
 
 function getFormatter({simple}) {
-
 	if (simple) {
-
 		return format.combine(format.splat(), format.colorize(), sqlFormatter({colorize: true}), format.simple());
-
 	}
 
 	return format.combine(format.splat(), format.timestamp(), format.json());
-
 }
 
 function getLogger({simple, metadata}) {
-
 	return winston.createLogger({
 		level: simple ? 'debug' : 'info',
 		levels: {
@@ -48,7 +39,6 @@ function getLogger({simple, metadata}) {
 		defaultMeta: simple ? {} : metadata,
 		transports: [new winston.transports.Console()]
 	});
-
 }
 
 module.exports = getLogger;
