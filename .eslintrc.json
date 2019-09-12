@@ -5,6 +5,9 @@
 		"promise",
 		"security"
 	],
+	"env": {
+		"mocha": true
+	},
 	"rules": {
 		"array-bracket-newline": [2, "consistent"],
 		"array-element-newline": [2, "consistent"],
@@ -12,6 +15,7 @@
 		"capitalized-comments": 2,
 		"comma-dangle": 2,
 		"dot-location": [2, "property"],
+		"no-console": 0,
 		"no-empty-function": 2,
 		"no-magic-numbers": 0,
 		"no-tabs": [2, {"allowIndentationTabs": true}],

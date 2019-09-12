@@ -31,6 +31,9 @@ jobs:
       - run:
           name: Lint
           command: npm run lint
+      - run:
+          name: Test
+          command: npm run test
       - persist_to_workspace:
           root: ~/repo
           paths:

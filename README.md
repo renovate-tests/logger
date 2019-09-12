@@ -7,30 +7,8 @@
 npm install --save @5app/logger
 ```
 
-Then, generate a logger in your app and use it to log messages.
-
 ```javascript
-const {logger} = require('@5app/logger');
-
-logger.info('An email was sent', {
-  email: 'customer@5app.com',
-  template: 'template1',
-});
-
-logger.error(new Error('Unknown playlist 123'));
-```
-
-Alternatively, you can create a new instance of logger where you can specify the metadata, logging level, and whether you want simple logs or not:
-
-```javascript
-const {getLogger} = require('@5app/logger');
-
-const logger = getLogger({
-  simple: process.env.NODE_ENV === 'development',
-  metadata: {
-    tag: process.env.TAG, // release tag, e.g. docker container tag
-  },
-});
+const logger = require('@5app/logger');
 
 logger.info('An email was sent', {
   email: 'customer@5app.com',
@@ -42,57 +20,21 @@ logger.error(new Error('Unknown playlist 123'));
 
 ## Options
 
-The logger generator accepts the following options:
+The logger can optionally be customised using the following environment variables:
 
-### simple
+- `LOGS_FORMAT`: if set to `json`, the logger will log messages in json format instead of pretty messages (default behaviour).
+- `LOGS_LEVEL`: minimum logging level, by default it will be `debug`. Accepted values are `'debug'`, `'info'`, `'warn'`, and `'error'`
+- `TAG`: release tag (e.g. docker image tag) to be added to the log messages
 
-This boolean value specifies whether we should log pretty dev-friendly messages instead of JSON or not.
-By default, simple will be false.
+## Logging levels
 
-Example:
-```javascript
-const {getLogger} = require('@5app/logger');
+Logging levels are (from lower to higher priority): `'debug'`, `'info'`, `'warn'`, and `'error'`.
+The logger provides the logging functions with the following signatures: `logger.<level>(message, objectOrError)`
 
-// This logger will log dev-friendly messages
-const logger = getLogger({
-  simple: true,
-});
+Here is an example of how the logger can be used:
 ```
-
-The default logger uses the environment variable `LOGS_FORMAT` to determine if the logs are going to be generated in json (`json`) or simple console logs (any other value other than `json`).
-
-### metadata
-
-Metadata is an object containing service metadata like the release tag or the A/B testing experiment we are running.
-This object will be added to each log entry when using the JSON mode.
-
-Example:
-```javascript
-const {getLogger} = require('@5app/logger');
-
-// This logger will add details about the current release and A/B experiment to every log line
-const logger = getLogger({
-  metadata: {
-    release: '1.2.3',
-    experiment: 12345,
-  },
-});
-```
-
-### level
-
-You can specify a minimum logging level using the `level` parameter or using the `LOGS_LEVEL` environment variable.
-By default, the logging level will be [debug (npm)](https://github.com/winstonjs/winston#logging-levels).
-
-Example:
-```javascript
-const {getLogger} = require('@5app/logger');
-
-// This logger will add details about the current release and A/B experiment to every log line
-const logger = getLogger({
-  level: 'warn',
-});
-
-logger.info('this message will not be logged');
-logger.warn('you will see this message');
+logger.error('An error happened', new ApiError('The api call failed', 404)); // will log the message, the error message, the stack trace, and the statusCode error property
+logger.warn('Be warned', {a: 1, b: Date.now(), c: 'some string'});
+logger.info('An event happened', {a: 1, b: Date.now(), c: 'some string'});
+logger.debug('A minor operation', {a: 1, b: Date.now(), c: 'some string'});
 ```
