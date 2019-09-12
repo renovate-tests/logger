@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/5app/logger/compare/v1.1.0...v2.0.0) (2019-09-12)
+
+
+### Features
+
+* Drop winston and simpplify the logger ([fa86131](https://github.com/5app/logger/commit/fa86131))
+
+
+### BREAKING CHANGES
+
+* The logger do not allow using winston's API anymore as we dropped winston
+
 # [1.1.0](https://github.com/5app/logger/compare/v1.0.2...v1.1.0) (2019-09-12)
 
 
