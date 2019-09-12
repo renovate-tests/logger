@@ -1,44 +1,20 @@
-const winston = require('winston');
+const getLogger = require('./getLogger');
 
-const LEVEL = Symbol.for('level');
-const {format} = winston;
-const sqlFormat = {
-	level: winston.config.npm.levels.debug,
-	color: 'grey'
-};
+const {
+	LOGS_FORMAT,
+	LOGS_LEVEL,
+	TAG
+} = process.env;
 
-winston.addColors({sql: sqlFormat.color});
-
-const colorizer = format.colorize();
-const sqlFormatter = format((info, opts) => {
-	const level = info[LEVEL];
-
-	if (opts.colorize && level === 'sql') {
-		info.message = colorizer.colorize(level, `${info.message}\n`);
+const logger = getLogger({
+	simple: LOGS_FORMAT !== 'json',
+	level: LOGS_LEVEL || 'debug',
+	metadata: {
+		tag: TAG
 	}
-
-	return info;
 });
 
-function getFormatter({simple}) {
-	if (simple) {
-		return format.combine(format.splat(), format.colorize(), sqlFormatter({colorize: true}), format.simple());
-	}
-
-	return format.combine(format.splat(), format.timestamp(), format.json());
-}
-
-function getLogger({simple, metadata}) {
-	return winston.createLogger({
-		level: simple ? 'debug' : 'info',
-		levels: {
-			...winston.config.npm.levels,
-			sql: sqlFormat.level
-		},
-		format: getFormatter({simple}),
-		defaultMeta: simple ? {} : metadata,
-		transports: [new winston.transports.Console()]
-	});
-}
-
-module.exports = getLogger;
+module.exports = {
+	logger,
+	getLogger
+};
