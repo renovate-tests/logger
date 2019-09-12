@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/5app/logger/compare/v1.0.2...v1.1.0) (2019-09-12)
+
+
+### Features
+
+* Provide a logger instance by default ([6a932d6](https://github.com/5app/logger/commit/6a932d6))
+
 ## [1.0.2](https://github.com/5app/logger/compare/v1.0.1...v1.0.2) (2019-09-12)
 
 
