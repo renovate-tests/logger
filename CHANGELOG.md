@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/5app/logger/compare/v1.0.1...v1.0.2) (2019-09-12)
+
+
+### Bug Fixes
+
+* Remove extra `sql` level in sql messages ([fbdcd5f](https://github.com/5app/logger/commit/fbdcd5f))
+
 ## [1.0.1](https://github.com/5app/logger/compare/v1.0.0...v1.0.1) (2019-09-10)
 
 
