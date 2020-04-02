@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/5app/logger/compare/v2.0.1...v2.0.2) (2020-04-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency chalk to v4 ([08e5236](https://github.com/5app/logger/commit/08e52366b900ef906bab2197a5ffa354d9ed643e))
+
 ## [2.0.1](https://github.com/5app/logger/compare/v2.0.0...v2.0.1) (2020-01-22)
 
 
