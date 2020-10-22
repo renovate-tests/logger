@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/5app/logger/compare/v2.0.2...v2.1.0) (2020-10-22)
+
+
+### Features
+
+* Support providing both a context and an error object ([#18](https://github.com/5app/logger/issues/18)) ([790ba6d](https://github.com/5app/logger/commit/790ba6dc23b49632149963d7a054ad7aa6e177d9))
+
 ## [2.0.2](https://github.com/5app/logger/compare/v2.0.1...v2.0.2) (2020-04-02)
 
 
