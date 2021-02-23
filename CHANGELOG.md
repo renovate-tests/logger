@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/5app/logger/compare/v2.1.0...v2.2.0) (2021-02-23)
+
+
+### Features
+
+* Support providing a dynamic context ([#24](https://github.com/5app/logger/issues/24)) ([d343b1c](https://github.com/5app/logger/commit/d343b1c64d47099326b1376083e90c4084d6285f))
+
 # [2.1.0](https://github.com/5app/logger/compare/v2.0.2...v2.1.0) (2020-10-22)
 
 
